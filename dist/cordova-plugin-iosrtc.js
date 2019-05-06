@@ -78,7 +78,7 @@ function MediaDeviceInfo(data) {
 		},
 		// Deprecated, but useful until there is an alternative
 		facing: {
-			value: ''
+			value: data.facing
 		}
 	});
 }
@@ -2393,6 +2393,10 @@ function getUserMedia(constraints) {
 		if (typeof constraints.video.deviceId === 'string') {
 			newConstraints.videoDeviceId = constraints.video.deviceId;
 		// Also check sourceId (mangled by adapter.js).
+		} if (typeof constraints.video.deviceId === 'object') {
+			if(typeof constraints.video.deviceId.exact === 'string') {
+				newConstraints.videoDeviceId = constraints.video.deviceId.exact;
+			}
 		} else if (typeof constraints.video.sourceId === 'string') {
 			newConstraints.videoDeviceId = constraints.video.sourceId;
 		}

@@ -27,7 +27,7 @@ function MediaDeviceInfo(data) {
 		},
 		// Deprecated, but useful until there is an alternative
 		facing: {
-			value: ''
+			value: data.facing
 		}
 	});
 }

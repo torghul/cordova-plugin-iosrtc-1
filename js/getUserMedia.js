@@ -95,6 +95,10 @@ function getUserMedia(constraints) {
 		if (typeof constraints.video.deviceId === 'string') {
 			newConstraints.videoDeviceId = constraints.video.deviceId;
 		// Also check sourceId (mangled by adapter.js).
+		} else if(typeof constraints.video.deviceId === 'object') {
+			if(typeof constraints.video.deviceId.exact === 'string') {
+				newConstraints.videoDeviceId = constraints.video.deviceId.exact;
+			}
 		} else if (typeof constraints.video.sourceId === 'string') {
 			newConstraints.videoDeviceId = constraints.video.sourceId;
 		}
