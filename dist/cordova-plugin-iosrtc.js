@@ -753,7 +753,7 @@ MediaStreamRenderer.prototype.refresh = function () {
 			videoViewWidth: videoViewWidth,
 			videoViewHeight: videoViewHeight,
 			visible: visible,
-			opacity: opacity,
+//			opacity: opacity,
 			zIndex: zIndex,
 			mirrored: mirrored,
 			objectFit: objectFit,
