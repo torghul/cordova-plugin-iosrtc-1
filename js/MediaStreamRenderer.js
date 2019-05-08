@@ -261,17 +261,17 @@ MediaStreamRenderer.prototype.refresh = function () {
 		// 'contain'.
 		default:
 			objectFit = 'contain';
-			videoViewHeight = elementHeight;
-			videoViewWidth = videoViewHeight * videoRatio;
+			//videoViewHeight = elementHeight;
+			//videoViewWidth = videoViewHeight * videoRatio;
 			//The element has higher or equal width/height ratio than the video.
-			// if (elementRatio >= videoRatio) {
-			// 	videoViewHeight = elementHeight;
-			// 	videoViewWidth = videoViewHeight * videoRatio;
+			if (elementRatio >= videoRatio) {
+				videoViewHeight = elementHeight;
+				videoViewWidth = videoViewHeight * videoRatio;
 			//The element has lower width/height ratio than the video.
-			// } else if (elementRatio < videoRatio) {
-			// 	videoViewWidth = elementWidth;
-			// 	videoViewHeight = videoViewWidth / videoRatio;
-			// }
+			} else if (elementRatio < videoRatio) {
+				videoViewWidth = elementWidth;
+				videoViewHeight = videoViewWidth / videoRatio;
+			}
 			break;
 	}
 

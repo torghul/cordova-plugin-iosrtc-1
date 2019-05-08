@@ -58,7 +58,7 @@ class PluginGetUserMedia : NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         var constraints: RTCMediaConstraints
         
         if videoRequested == true {
-            switch AVCaptureDevice.authorizationStatus(for: AVMediaType.video) {
+            switch AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) {
             case AVAuthorizationStatus.notDetermined:
                 NSLog("PluginGetUserMedia#call() | video authorization: not determined")
             case AVAuthorizationStatus.authorized:
@@ -75,7 +75,7 @@ class PluginGetUserMedia : NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
         }
         
         if audioRequested == true {
-            switch AVCaptureDevice.authorizationStatus(for: AVMediaType.audio) {
+            switch AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeAudio) {
             case AVAuthorizationStatus.notDetermined:
                 NSLog("PluginGetUserMedia#call() | audio authorization: not determined")
             case AVAuthorizationStatus.authorized:
@@ -98,7 +98,7 @@ class PluginGetUserMedia : NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
             if videoDeviceId == nil {
                 NSLog("PluginGetUserMedia#call() | video requested (device not specified)")
                 
-                for device: AVCaptureDevice in (AVCaptureDevice.devices(for: AVMediaType.video) as! Array<AVCaptureDevice>) {
+                for device: AVCaptureDevice in (AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo) as! Array<AVCaptureDevice>) {
                     if device.position == AVCaptureDevice.Position.front {
                         videoDevice = device
                         break
@@ -110,7 +110,7 @@ class PluginGetUserMedia : NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
             else {
                 NSLog("PluginGetUserMedia#call() | video requested (specified device id: '%@')", String(videoDeviceId!))
                 
-                for device: AVCaptureDevice in (AVCaptureDevice.devices(for: AVMediaType.video) as! Array<AVCaptureDevice>) {
+                for device: AVCaptureDevice in (AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo) as! Array<AVCaptureDevice>) {
                     if device.uniqueID == videoDeviceId {
                         videoDevice = device
                         break
@@ -243,12 +243,12 @@ class PluginGetUserMedia : NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
             AVVideoCodecKey : AVVideoCodecH264 as AnyObject
         ]
         
-        assetWriterInput = AVAssetWriterInput(mediaType: AVMediaType.video, outputSettings: outputSettings)
+        assetWriterInput = AVAssetWriterInput(mediaType: AVMediaTypeVideo, outputSettings: outputSettings)
         assetWriterInput?.transform = CGAffineTransform( rotationAngle: CGFloat(( 90 * M_PI ) / 180))
         self.isRecording = true
         
         do {
-            assetWriter = try AVAssetWriter(outputURL: outputURL!, fileType: AVFileType.mp4)
+            assetWriter = try AVAssetWriter(outputURL: outputURL!, fileType: AVFileTypeMPEG4)
             assetWriter!.add(assetWriterInput!)
             assetWriterInput!.expectsMediaDataInRealTime = true
             

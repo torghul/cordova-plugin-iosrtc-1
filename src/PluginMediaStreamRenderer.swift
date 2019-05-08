@@ -139,8 +139,8 @@ class PluginMediaStreamRenderer : NSObject, RTCEAGLVideoViewDelegate {
         let elementTop = (data.object(forKey: "elementTop") as? Float ?? 0) + Float(UIApplication.shared.statusBarFrame.height)
         let elementWidth = data.object(forKey: "elementWidth") as? Float ?? 0
         let elementHeight = data.object(forKey: "elementHeight") as? Float ?? 0
-        let videoViewWidth = (data.object(forKey: "videoViewWidth") as? NSNumber)?.floatValue ?? 0
-        let videoViewHeight = (data.object(forKey: "videoViewHeight") as? NSNumber)?.floatValue ?? 0
+        var videoViewWidth = (data.object(forKey: "videoViewWidth") as? NSNumber)?.floatValue ?? 0
+        var videoViewHeight = (data.object(forKey: "videoViewHeight") as? NSNumber)?.floatValue ?? 0
         let visible = data.object(forKey: "visible") as? Bool ?? true
         let opacity = data.object(forKey: "opacity") as? Float ?? 1
         let zIndex = data.object(forKey: "zIndex") as? Float ?? 0

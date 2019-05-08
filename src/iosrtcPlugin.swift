@@ -49,6 +49,17 @@ class iosrtcPlugin : CDVPlugin, AVAudioRecorderDelegate {
 		)
 
         let image = appLaunchImage()
+
+        let screenSize:CGRect = UIScreen.main.bounds
+        let screenSizeWithoutBounds = UIScreen.main.applicationFrame;
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        let y = screenHeight - screenSizeWithoutBounds.height
+        let imageView = UIImageView(frame: CGRect(x: 0, y: y, width: screenWidth, height: screenHeight))
+        imageView.image = image
+        imageView.layer.zPosition = -10
+
+        self.webView?.superview?.addSubview(imageView)
 	}
 
     func appLaunchImage() -> UIImage? {
