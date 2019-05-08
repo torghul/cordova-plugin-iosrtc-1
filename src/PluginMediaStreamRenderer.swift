@@ -248,14 +248,14 @@ class PluginMediaStreamRenderer : NSObject, RTCEAGLVideoViewDelegate {
     func videoView(_ videoView: RTCEAGLVideoView!, didChangeVideoSize size: CGSize) {
         NSLog("PluginMediaStreamRenderer | video size changed [width:%@, height:%@]",
               String(describing: size.width), String(describing: size.height))
-        return;
-//        self.eventListener([
-//            "type": "videoresize",
-//            "size": [
-//                "width": Int(size.width),
-//                "height": Int(size.height)
-//            ]
-//            ])
+
+        self.eventListener([
+            "type": "videoresize",
+            "size": [
+                "width": Int(size.width),
+                "height": Int(size.height)
+            ]
+        ])
     }
     
 }
