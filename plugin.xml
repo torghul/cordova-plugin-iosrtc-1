@@ -30,6 +30,9 @@
 			<clobbers target="cordova.plugins.iosrtc" />
 		</js-module>
 
+		<!-- Bridging header for using ObjetiveC libraries in Swift -->
+		<header-file src="src/cordova-plugin-iosrtc-Bridging-Header.h" />
+
 		<!-- Project source files -->
 		<source-file src="src/iosrtcPlugin.swift" />
 		<source-file src="src/PluginEnumerateDevices.swift" />
