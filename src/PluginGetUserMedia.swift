@@ -172,9 +172,9 @@ class PluginGetUserMedia : NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
             
             if(videoDevice != nil) {
                 if (videoDevice!.position == AVCaptureDevice.Position.front) {
-                    rtcVideoSource?.useBackCamera = true
-                } else {
                     rtcVideoSource?.useBackCamera = false
+                } else {
+                    rtcVideoSource?.useBackCamera = true
                 }
             }
             
